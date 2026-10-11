@@ -1,0 +1,1005 @@
+/*
+ * NAVELLE ADMIN
+ * Tema: soft pink, putih, dan abu-abu muda.
+ * File ini menggantikan CSS bawaan Product Admin.
+ */
+
+/* =========================
+   1. PENGATURAN DASAR
+   ========================= */
+
+:root {
+  --navelle-pink: #d985a0;
+  --navelle-pink-dark: #bd6684;
+  --navelle-pink-light: #fceef3;
+  --navelle-white: #ffffff;
+  --navelle-bg: #fff8fa;
+  --navelle-gray: #f4f1f3;
+  --navelle-text: #51454a;
+  --navelle-muted: #91838a;
+  --navelle-border: #f0dfe6;
+  --navelle-shadow: 0 5px 20px rgba(150, 90, 115, 0.08);
+}
+
+html {
+  font-size: 16px;
+  overflow-x: hidden;
+}
+
+body {
+  font-family: Roboto, Helvetica, Arial, sans-serif;
+  background-color: var(--navelle-bg);
+  color: var(--navelle-text);
+  overflow-x: hidden;
+  line-height: 1.6;
+}
+
+a {
+  color: var(--navelle-pink-dark);
+  transition: all 0.3s ease;
+}
+
+a:focus,
+a:hover {
+  color: var(--navelle-pink-dark);
+  text-decoration: none;
+}
+
+button:focus {
+  outline: 0;
+}
+
+
+/* =========================
+   2. NAVBAR DAN LOGO
+   ========================= */
+
+/* Mengatur logo agar sejajar dengan nama admin */
+.navbar-brand {
+  display: flex;
+  align-items: center;
+  margin-left: 20px;
+  margin-right: 12px;
+  padding: 0;
+  flex-shrink: 0;
+}
+
+
+.tm-site-icon {
+  color: var(--navelle-pink);
+}
+
+/* Nama admin dan logo */
+.tm-site-title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-transform: uppercase;
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--navelle-text);
+  white-space: nowrap;
+}
+
+
+.tm-site-title img {
+  width: 70px;
+  height: 70px;
+  object-fit: contain;
+  flex-shrink: 0;
+}
+
+/* Membuat logo dan nama admin lebih dekat ke sisi kiri */
+.navbar-brand {
+  display: flex;
+  align-items: center;
+  margin-left: 0;
+  margin-right: 20px;
+  padding: 0;
+  flex-shrink: 0;
+}
+
+/* Memperbesar tulisan nama admin */
+.tm-site-title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-transform: uppercase;
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--navelle-text);
+  white-space: nowrap;
+}
+
+
+/* Navbar menggunakan tinggi dan jarak yang lebih seimbang */
+.navbar {
+  min-height: 82px;
+  height: auto;
+  background-color: var(--navelle-white);
+  padding: 10px 0;
+  box-shadow: 0 3px 15px rgba(120, 70, 90, 0.07);
+  border-bottom: 1px solid var(--navelle-border);
+}
+
+.navbar .container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 100%;
+  padding-left: 32px;
+  padding-right: 32px;
+}
+
+/* Ikon keluar */
+.tm-logout-icon {
+  font-size: 1.2em;
+}
+
+/* Tombol menu untuk layar kecil */
+.navbar-toggler {
+  border: 1px solid var(--navelle-border);
+  border-radius: 10px;
+  padding: 8px 12px;
+  transition: all 0.2s ease;
+}
+
+.navbar-toggler:hover {
+  border-color: var(--navelle-pink);
+  color: var(--navelle-pink-dark);
+}
+
+.tm-nav-icon {
+  color: var(--navelle-pink-dark);
+}
+
+.navbar-toggler:hover .tm-nav-icon {
+  color: var(--navelle-pink-dark);
+}
+
+/* =========================
+   3. MENU NAVIGASI
+   ========================= */
+
+/* Memberi jarak yang cukup antara menu */
+.navbar-nav {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.nav-link {
+  color: var(--navelle-text);
+  min-height: 58px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  font-size: 88%;
+  font-weight: 500;
+  border-radius: 12px;
+  padding: 10px 13px;
+  white-space: nowrap;
+}
+
+.nav-link > i {
+  margin-bottom: 5px;
+  margin-right: 0;
+  font-size: 1.2rem;
+  color: var(--navelle-pink-dark);
+}
+
+.dropdown-item {
+  color: var(--navelle-text);
+  padding: 10px 15px;
+  border-radius: 8px;
+}
+
+.dropdown-menu {
+  font-size: 90%;
+  color: var(--navelle-text);
+  background-color: var(--navelle-white);
+  border: 1px solid var(--navelle-border);
+  border-radius: 12px;
+  padding: 8px;
+  min-width: 150px;
+  box-shadow: var(--navelle-shadow);
+}
+
+.navbar-nav .active > .nav-link,
+.navbar-nav .nav-link.active {
+  background-color: var(--navelle-pink-light);
+  color: var(--navelle-pink-dark);
+}
+
+.navbar-nav .nav-link.active i {
+  color: var(--navelle-pink-dark);
+}
+
+.dropdown-item:focus,
+.dropdown-item:hover {
+  background-color: var(--navelle-pink-light);
+  color: var(--navelle-pink-dark);
+}
+
+.navbar-nav a:hover,
+.navbar-nav a:hover i {
+  color: var(--navelle-pink-dark);
+}
+
+.nav-item {
+  text-align: center;
+}
+
+.nav-item:last-child {
+  margin-right: 0;
+}
+
+.dropdown-toggle::after {
+  display: none;
+}
+
+/* Menyesuaikan navbar untuk layar kecil */
+@media (max-width: 1199px) {
+  .navbar .container {
+    flex-wrap: wrap;
+  }
+
+  .navbar-collapse {
+    width: 100%;
+    flex-basis: 100%;
+  }
+
+  .navbar-nav {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .nav-link {
+    padding: 10px 12px;
+  }
+}
+
+/* =========================
+   4. JARAK DAN KONTEN
+   ========================= */
+
+.tm-mt-big {
+  margin-top: 45px;
+}
+
+.tm-mb-big {
+  margin-bottom: 45px;
+}
+
+.tm-mt-small {
+  margin-top: 20px;
+}
+
+.tm-block-col {
+  margin-bottom: 25px;
+}
+
+.tm-content-row {
+  justify-content: space-between;
+  margin-left: -12px;
+  margin-right: -12px;
+}
+
+.tm-col {
+  padding-left: 12px;
+  padding-right: 12px;
+  margin-bottom: 30px;
+}
+
+.tm-col-big {
+  width: 39%;
+}
+
+.tm-col-small {
+  width: 21.95%;
+}
+
+/* =========================
+   5. KARTU DASHBOARD
+   ========================= */
+
+.tm-block {
+  padding: 30px;
+  background-color: var(--navelle-white);
+  border: 1px solid var(--navelle-border);
+  border-radius: 18px;
+  box-shadow: var(--navelle-shadow);
+  min-height: 350px;
+  height: 100%;
+  max-height: 450px;
+}
+
+.tm-block-avatar,
+.tm-block-settings {
+  max-height: none;
+}
+
+.tm-block-avatar {
+  height: auto;
+}
+
+.tm-block-h-auto {
+  min-height: 1px;
+  max-height: none;
+  height: auto;
+}
+
+.tm-block-scroll {
+  overflow-y: auto;
+}
+
+.tm-block-overflow {
+  overflow: hidden;
+}
+
+.tm-block-title {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--navelle-text);
+  margin-bottom: 24px;
+}
+
+.tm-bg-primary-dark {
+  background-color: var(--navelle-white);
+}
+
+.tm-bg-gray {
+  background-color: var(--navelle-gray);
+}
+
+/* =========================
+   6. TABEL
+   ========================= */
+
+.table {
+  background-color: var(--navelle-white);
+  color: var(--navelle-text);
+  font-size: 90%;
+  margin-bottom: 0;
+}
+
+thead {
+  background-color: var(--navelle-pink-light);
+  color: var(--navelle-text);
+}
+
+.table thead th {
+  border-bottom: 0;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.table td,
+.table th {
+  border-top: 1px solid var(--navelle-border);
+  padding: 14px 18px;
+  vertical-align: middle;
+}
+
+.table-hover tbody tr {
+  transition: background-color 0.2s ease;
+}
+
+.table-hover tbody tr:hover {
+  color: var(--navelle-text);
+  background-color: #fff8fa;
+}
+
+.tm-table-small td,
+.tm-table-small th {
+  padding-left: 12px;
+  padding-right: 12px;
+}
+
+.tm-table-mt {
+  margin-top: 35px;
+}
+
+.tm-product-table tr {
+  font-weight: 500;
+}
+
+.tm-product-name {
+  font-size: 0.95rem;
+  font-weight: 600;
+}
+
+.tm-product-table-container {
+  max-height: 465px;
+  margin-bottom: 15px;
+  overflow-y: auto;
+}
+
+/* =========================
+   7. FORM INPUT
+   ========================= */
+
+.form-control {
+  background-color: var(--navelle-white);
+  color: var(--navelle-text);
+  border: 1px solid var(--navelle-border);
+  padding: 12px 15px;
+  border-radius: 10px;
+  min-height: 46px;
+  height: auto;
+}
+
+.form-control:focus {
+  background-color: var(--navelle-white);
+  color: var(--navelle-text);
+  border-color: var(--navelle-pink);
+  box-shadow: 0 0 0 3px rgba(217, 133, 160, 0.15);
+}
+
+.form-control::placeholder {
+  color: #b7aab0;
+}
+
+.form-group {
+  margin-bottom: 18px;
+}
+
+.form-group label {
+  color: var(--navelle-text);
+  margin-bottom: 8px;
+  font-weight: 600;
+}
+
+.custom-select {
+  width: 100%;
+  border: 1px solid var(--navelle-border);
+  color: var(--navelle-text);
+  background-color: var(--navelle-white);
+  min-height: 46px;
+  height: auto;
+  border-radius: 10px;
+  padding: 10px 15px;
+}
+
+.custom-select:focus {
+  outline: 0;
+  border-color: var(--navelle-pink);
+  box-shadow: 0 0 0 3px rgba(217, 133, 160, 0.15);
+}
+
+.custom-file-label {
+  border-radius: 10px;
+}
+
+.custom-file-input {
+  cursor: pointer;
+}
+
+/* =========================
+   8. TOMBOL
+   ========================= */
+
+.btn {
+  border-radius: 10px;
+  padding: 10px 20px;
+  transition: all 0.2s ease;
+  max-width: 100%;
+  font-weight: 600;
+}
+
+.btn-small {
+  padding: 8px 16px;
+}
+
+.btn-primary {
+  color: var(--navelle-white);
+  background-color: var(--navelle-pink);
+  border: 1px solid var(--navelle-pink);
+  font-size: 90%;
+  font-weight: 600;
+}
+
+.btn-primary:active,
+.btn-primary:hover {
+  color: var(--navelle-white);
+  background-color: var(--navelle-pink-dark);
+  border-color: var(--navelle-pink-dark);
+}
+
+.btn-secondary {
+  color: var(--navelle-text);
+  background-color: var(--navelle-gray);
+  border: 1px solid var(--navelle-border);
+}
+
+.btn-secondary:hover {
+  background-color: var(--navelle-border);
+  color: var(--navelle-text);
+}
+
+/* =========================
+   9. NOTIFIKASI
+   ========================= */
+
+.tm-gray-circle {
+  width: 80px;
+  height: 80px;
+  background-color: var(--navelle-pink-light);
+  border-radius: 50%;
+  margin-right: 15px;
+}
+
+.tm-notification-items {
+  overflow-y: auto;
+  height: 90%;
+}
+
+.tm-notification-item {
+  padding: 15px;
+  background-color: var(--navelle-pink-light);
+  color: var(--navelle-text);
+  font-size: 95%;
+  margin-bottom: 15px;
+  border-radius: 12px;
+}
+
+.tm-notification-item:last-child {
+  margin-bottom: 0;
+}
+
+.tm-notification-link {
+  color: var(--navelle-pink-dark);
+  font-weight: 600;
+}
+
+.tm-text-color-secondary {
+  color: var(--navelle-muted);
+}
+
+.tm-small {
+  font-size: 90%;
+}
+
+/* =========================
+   10. STATUS DAN IKON
+   ========================= */
+
+.tm-status-circle {
+  display: inline-block;
+  margin-right: 5px;
+  vertical-align: middle;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  margin-top: -3px;
+}
+
+.moving {
+  background-color: #75bd8b;
+}
+
+.pending {
+  background-color: #e9b957;
+}
+
+.cancelled {
+  background-color: #d87582;
+}
+
+.tm-avatar {
+  width: 345px;
+  max-width: 100%;
+}
+
+.tm-avatar-container {
+  position: relative;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.tm-avatar-delete-link {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  margin-left: -25px;
+  margin-top: -25px;
+  z-index: 1000;
+  padding: 14px;
+  border-radius: 50%;
+  background-color: rgba(189, 102, 132, 0.85);
+  display: none;
+  width: 50px;
+  height: 50px;
+  text-align: center;
+  transition: all 0.2s ease;
+}
+
+.tm-avatar-container:hover .tm-avatar-delete-link {
+  display: block;
+}
+
+.tm-col-avatar {
+  max-width: 425px;
+  width: 37%;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+.tm-col-account-settings {
+  max-width: 822px;
+  width: 63%;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+.tm-list-group {
+  counter-reset: myOrderedListItemsCounter;
+  padding-left: 0;
+}
+
+.tm-list-group > li {
+  list-style-type: none;
+  position: relative;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  padding: 8px;
+}
+
+.tm-list-group > li:hover {
+  color: var(--navelle-pink-dark);
+}
+
+.tm-list-group > li:before {
+  counter-increment: myOrderedListItemsCounter;
+  content: counter(myOrderedListItemsCounter) ".";
+  margin-right: 0.5em;
+}
+
+.tm-list {
+  padding-left: 30px;
+}
+
+.tm-list > li {
+  margin-bottom: 20px;
+}
+
+.tm-upload-icon {
+  background: var(--navelle-pink-light);
+  color: var(--navelle-pink-dark);
+  width: 55px;
+  height: 55px;
+  border-radius: 50%;
+  text-align: center;
+  padding-top: 15px;
+  font-size: 22px;
+}
+
+.tm-product-img-dummy {
+  max-width: 100%;
+  height: 240px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--navelle-muted);
+  background: var(--navelle-gray);
+  border-radius: 12px;
+}
+
+.tm-product-img-edit {
+  max-width: 100%;
+  position: relative;
+}
+
+.tm-product-img-edit i {
+  display: none;
+  position: absolute;
+}
+
+.tm-product-img-edit:hover i {
+  display: block;
+}
+
+.tm-product-delete-icon {
+  font-size: 1.1rem;
+  color: var(--navelle-pink-dark);
+}
+
+.tm-product-delete-link {
+  padding: 10px;
+  border-radius: 50%;
+  background-color: var(--navelle-pink-light);
+  display: inline-block;
+  width: 40px;
+  height: 40px;
+  text-align: center;
+}
+
+.tm-product-delete-link:hover .tm-product-delete-icon {
+  color: #a44464;
+}
+
+.tm-trash-icon {
+  color: var(--navelle-muted);
+  cursor: pointer;
+}
+
+.tm-trash-icon:hover {
+  color: #b84458;
+}
+
+/* =========================
+   11. CHECKBOX DAN PAGINASI
+   ========================= */
+
+.page-item:first-child .page-link {
+  border-top-left-radius: 8px;
+  border-bottom-left-radius: 8px;
+}
+
+.page-item:last-child .page-link {
+  border-top-right-radius: 8px;
+  border-bottom-right-radius: 8px;
+}
+
+.page-link {
+  padding: 10px 15px;
+}
+
+.page-link,
+.page-link:hover {
+  color: var(--navelle-pink-dark);
+}
+
+.page-item {
+  margin-right: 8px;
+}
+
+.page-item:last-child {
+  margin-right: 0;
+}
+
+.page-item.active .page-link {
+  background-color: var(--navelle-pink);
+  border-color: var(--navelle-pink);
+  color: var(--navelle-white);
+}
+
+input[type="checkbox"] {
+  cursor: pointer;
+  accent-color: var(--navelle-pink-dark);
+  width: 18px;
+  height: 18px;
+}
+
+.tm-product-img-dummy,
+.tm-block,
+.tm-notification-item {
+  overflow-wrap: anywhere;
+}
+
+/* =========================
+   12. FOOTER DAN SCROLLBAR
+   ========================= */
+
+.tm-footer {
+  background-color: var(--navelle-white);
+  padding-top: 25px;
+  padding-bottom: 25px;
+  border-top: 1px solid var(--navelle-border);
+  box-shadow: 0 -3px 12px rgba(120, 70, 90, 0.04);
+}
+
+.tm-footer-link {
+  color: var(--navelle-pink-dark);
+}
+
+.tm-footer-link:hover,
+.tm-footer-link:focus {
+  color: var(--navelle-text);
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--navelle-gray);
+}
+
+::-webkit-scrollbar-thumb {
+  background: #e2b5c5;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--navelle-pink);
+}
+
+/* =========================
+   13. RESPONSIVE / TAMPILAN HP
+   ========================= */
+
+@media (min-width: 1200px) {
+  .navbar-expand-xl .navbar-nav .nav-link {
+    padding-left: 18px;
+    padding-right: 18px;
+  }
+
+  .navbar-collapse {
+    height: 100%;
+  }
+}
+
+@media (min-width: 992px) {
+  .navbar-expand-lg .navbar-nav .nav-link {
+    padding: 12px 18px;
+  }
+}
+
+@media (max-width: 1350px) {
+  .nav-item {
+    margin-right: 1px;
+  }
+}
+
+@media (max-width: 1199px) {
+  .tm-col-big,
+  .tm-col-small {
+    width: 49.65%;
+  }
+
+  .navbar-collapse {
+    padding: 8px;
+    box-shadow: var(--navelle-shadow);
+    background-color: var(--navelle-white);
+    border: 1px solid var(--navelle-border);
+    border-radius: 12px;
+    position: absolute;
+    top: 75px;
+    right: 20px;
+    width: 220px;
+    z-index: 1000;
+  }
+
+  .dropdown-menu {
+    text-align: center;
+  }
+
+  .nav-link {
+    color: var(--navelle-text);
+    background-color: var(--navelle-white);
+    padding: 12px;
+    flex-direction: row;
+  }
+
+  .nav-link > i {
+    font-size: 1rem;
+    margin-right: 10px;
+    margin-bottom: 0;
+  }
+
+  .nav-item {
+    margin-right: 0;
+  }
+
+  .tm-block-taller {
+    max-height: 520px;
+  }
+}
+
+@media (max-width: 1199.98px) {
+  .navbar-expand-xl > .container,
+  .navbar-expand-xl > .container-fluid {
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+
+  .navbar-collapse {
+    right: 15px;
+  }
+}
+
+@media (max-width: 991px) {
+  .tm-col-big,
+  .tm-col-small {
+    width: 100%;
+    min-height: 300px;
+    height: auto;
+  }
+
+  .tm-block {
+    padding: 25px;
+  }
+}
+
+@media (max-width: 767px) {
+  .tm-col-account-settings,
+  .tm-col-avatar {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .tm-block-avatar {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .tm-avatar {
+    align-self: center;
+  }
+
+  .tm-hide-sm {
+    display: none;
+  }
+
+  .table td,
+  .table th {
+    padding: 10px;
+  }
+}
+
+@media (max-width: 633px) {
+  .page-item {
+    margin-top: 8px;
+  }
+
+  .custom-select {
+    background-position: 96%;
+  }
+}
+
+@media (max-width: 574px) {
+  .navbar {
+    min-height: 65px;
+  }
+
+  .tm-site-title {
+    font-size: 1rem;
+    margin-left: 0;
+    gap: 8px;
+  }
+
+  .tm-site-title img {
+  width: 48px;
+  height: 48px;
+  object-fit: contain;
+  flex-shrink: 0;
+}
+
+  .tm-site-icon {
+    font-size: 2em;
+  }
+
+  .tm-mt-big {
+    margin-top: 30px;
+  }
+
+  .tm-mb-big {
+    margin-bottom: 30px;
+  }
+}
+
+@media (max-width: 480px) {
+  .tm-mt-big {
+    margin-top: 25px;
+  }
+
+  .tm-mb-big {
+    margin-bottom: 25px;
+  }
+
+  .tm-block {
+    padding: 18px;
+    border-radius: 14px;
+  }
+
+  #barChart,
+  #lineChart {
+    max-height: 350px;
+  }
+}
