@@ -165,8 +165,7 @@
 <body>
 
     <!-- Navbar utama admin Navelle -->
-    <nav class="navbar navbar-expand-lg navbar-light navelle-navbar">
-
+    @include('admin.partials.navbar', ['activeMenu' => 'pelanggan'])
         <!-- Logo dan nama toko -->
         <a class="navbar-brand navelle-brand" href="{{ url('/admin') }}">
             <img src="{{ asset('assets-admin/img/logo navelle.png') }}"
@@ -206,18 +205,8 @@
             </p>
 
             <!-- Pesan berhasil -->
-            @if (session('success'))
-                <div class="alert alert-success">
-                    {{ session('success') }}
-                </div>
-            @endif
-
-            <!-- Pesan kesalahan umum -->
-            @if (session('error'))
-                <div class="alert alert-danger">
-                    {{ session('error') }}
-                </div>
-            @endif
+            {{-- Partial View untuk pesan notifikasi --}}
+            @include('admin.partials.alert')
 
             <!-- Pesan kesalahan validasi -->
             @if ($errors->any())
@@ -333,10 +322,7 @@
             </div>
 
             <!-- Footer halaman admin -->
-            <footer class="text-center mt-4 py-3"
-                    style="color: #94858c;">
-                &copy; {{ date('Y') }} Navelle Admin
-            </footer>
+            @include('admin.partials.footer')
 
         </div>
     </main>
