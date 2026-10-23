@@ -1,429 +1,190 @@
-<!DOCTYPE html>
-<html lang="en">
+@extends('layouts.admin.app')
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Product Admin - Dashboard HTML Template</title>
-    <link rel="stylesheet" href="{{ asset('assets-admin/css/fontawesome.css') }}">
-    <!-- https://fonts.google.com/specimen/Roboto -->
-   <link rel="stylesheet" href="{{ asset('assets-admin/css/fontawesome.min.css') }}">
-    <!-- https://fontawesome.com/ -->
-<link rel="stylesheet" href="{{ asset('assets-admin/css/bootstrap.min.css') }}">    <!-- https://getbootstrap.com/ -->
-    <link rel="stylesheet" href="{{ asset('assets-admin/css/templatemo-style.css') }}">
-    <!--
-	Product Admin CSS Template
-	https://templatemo.com/tm-524-product-admin
-	-->
-</head>
+@section('title', 'Dashboard - Navelle')
+@section('page-heading', 'Dashboard Admin')
 
-<body id="reportsPage">
-    <div class="" id="home">
-        <nav class="navbar navbar-expand-xl">
-            <div class="tm-site-title">
-    <img src="{{ asset('assets-admin/img/logo navelle.png') }}"
-         alt="Logo"
+@section('content')
 
-         width="50"
-         height="50"
-         style="object-fit: contain;">
+    <div class="mb-4">
+        <h3 style="color: #bd6684; font-weight: bold;">
+            Selamat datang kembali, Admin Navelle!
+        </h3>
+        <p style="color: #94858c;">
+            Berikut ringkasan pengelolaan toko Navelle.
+        </p>
+    </div>
 
-    <span>ADMIN PRODUK</span>
-</div>
-                <button class="navbar-toggler ml-auto mr-0" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-                    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                    <i class="fas fa-bars tm-nav-icon"></i>
-                </button>
-
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav mx-auto h-100">
-                        <li class="nav-item">
-                            <a class="nav-link active" href="#">
-                                <i class="fas fa-tachometer-alt"></i>
-                                Dashboard
-                                <span class="sr-only">(current)</span>
-                            </a>
-                        </li>
-                        <li class="nav-item dropdown">
-
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
-                                aria-haspopup="true" aria-expanded="false">
-                                <i class="far fa-file-alt"></i>
-                                <span>
-                                    Reports <i class="fas fa-angle-down"></i>
-                                </span>
-                            </a>
-                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="#">Daily Report</a>
-                                <a class="dropdown-item" href="#">Weekly Report</a>
-                                <a class="dropdown-item" href="#">Yearly Report</a>
-                            </div>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="products.html">
-                                <i class="fas fa-shopping-cart"></i>
-                                Products
-                            </a>
-                        </li>
-
-                        <li class="nav-item">
-                            <a class="nav-link" href="accounts.html">
-                                <i class="far fa-user"></i>
-                                Accounts
-                            </a>
-                        </li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
-                                aria-haspopup="true" aria-expanded="false">
-                                <i class="fas fa-cog"></i>
-                                <span>
-                                    Settings <i class="fas fa-angle-down"></i>
-                                </span>
-                            </a>
-                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="#">Profile</a>
-                                <a class="dropdown-item" href="#">Billing</a>
-                                <a class="dropdown-item" href="#">Customize</a>
-                            </div>
-                        </li>
-                    </ul>
-                    <ul class="navbar-nav">
-                        <li class="nav-item">
-                            <a class="nav-link d-block" href="login.html">
-                                Admin, <b>Logout</b>
-                            </a>
-                        </li>
-                    </ul>
+    <div class="row">
+        <div class="col-12 col-xl-6 mb-4">
+            <div class="customer-card p-4">
+                <h5 style="color:#bd6684;">Kunjungan Terbaru</h5>
+                <div style="height:260px;">
+                    <canvas id="lineChart"></canvas>
                 </div>
             </div>
+        </div>
 
-        </nav>
-        <div class="container">
-            <div class="row">
-                <div class="col">
-                    <p class="mt-5 mb-5" style="color: #51454a; font-size: 20px;">
-                             Selamat datang kembali, <b>Admin Navelle!</b>
-                    </p>                </div>
+        <div class="col-12 col-xl-6 mb-4">
+            <div class="customer-card p-4">
+                <h5 style="color:#bd6684;">Kinerja Toko</h5>
+                <div style="height:260px;">
+                    <canvas id="barChart"></canvas>
+                </div>
             </div>
-            <!-- row -->
-            <div class="row tm-content-row">
-                <div class="col-sm-12 col-md-12 col-lg-6 col-xl-6 tm-block-col">
-                    <div class="tm-bg-primary-dark tm-block">
-                        <!-- Grafik kunjungan terbaru -->
-                        <h2 class="tm-block-title">Kunjungan Terbaru</h2>                        <canvas id="lineChart"></canvas>
-                    </div>
+        </div>
+
+        <div class="col-12 col-xl-6 mb-4">
+            <div class="customer-card p-4">
+                <h5 style="color:#bd6684;">Ringkasan Data Toko</h5>
+                <div style="height:260px;">
+                    <canvas id="pieChart"></canvas>
                 </div>
-                <div class="col-sm-12 col-md-12 col-lg-6 col-xl-6 tm-block-col">
-                    <div class="tm-bg-primary-dark tm-block">
-                        <!-- Grafik kinerja toko -->
-                        <h2 class="tm-block-title">Kinerja Toko</h2>                        <canvas id="barChart"></canvas>
-                    </div>
+            </div>
+        </div>
+
+        <div class="col-12 col-xl-6 mb-4">
+            <div class="customer-card p-4">
+                <h5 style="color:#bd6684;">Pemberitahuan Terbaru</h5>
+
+                <div class="mb-4">
+                    <strong>Pengelolaan Pelanggan</strong>
+                    <p>Periksa data pelanggan yang terdaftar di Navelle.</p>
+                    <a href="{{ route('pelanggan.index') }}"
+                       style="color:#bd6684;">
+                        Lihat Data Pelanggan
+                    </a>
                 </div>
-                <div class="col-sm-12 col-md-12 col-lg-6 col-xl-6 tm-block-col">
-                    <div class="tm-bg-primary-dark tm-block tm-block-taller">
-                    <!-- Ringkasan penyimpanan data toko -->
-                    <h2 class="tm-block-title">Ringkasan Data Toko</h2>                        <div id="pieChartContainer">
-                            <canvas id="pieChart" class="chartjs-render-monitor" width="200" height="200"></canvas>
-                        </div>
-                    </div>
+
+                <hr>
+
+                <div class="mb-4">
+                    <strong>Pengelolaan Pengguna</strong>
+                    <p>Periksa akun pengguna yang terdaftar pada sistem.</p>
+                    <a href="{{ route('users.index') }}"
+                       style="color:#bd6684;">
+                        Lihat Data Pengguna
+                    </a>
                 </div>
-                <div class="col-sm-12 col-md-12 col-lg-6 col-xl-6 tm-block-col">
-                    <div class="tm-bg-primary-dark tm-block tm-block-taller tm-block-overflow">
-                        <!-- Daftar Notifikasi -->
-                        <!-- Informasi terbaru untuk admin -->
-                        <h2 class="tm-block-title">Pemberitahuan Terbaru</h2>                        <div class="tm-notification-items">
-                            <div class="media tm-notification-item">
 
-                                <img src="{{ asset('assets-admin/img/notification-01.jpg') }}" alt="Avatar Image" class="rounded-circle">
-                                <div class="media-body">
+                <hr>
 
-                                <!-- Pemberitahuan untuk admin Navelle -->
-                                <p class="mb-2">
-                                      <b>Navelle Store</b> memiliki halaman pengelolaan pelanggan.
-                                         Kamu dapat memeriksa data pelanggan melalui menu
-                             <a href="{{ route('pelanggan.index') }}" class="tm-notification-link">
-                                          Daftar Pelanggan
-                             </a>.
-                                    </p>
-                                <span class="tm-small tm-text-color-secondary">Informasi sistem</span>
-
-                                </div>
-                            </div>
-                            <div class="media tm-notification-item">
-                                <div class="tm-gray-circle"><img src="{{ asset('assets-admin/img/notification-02.jpg') }}" alt="Avatar Image" class="rounded-circle"></div>
-                                <div class="media-body">
-
-                                <!-- Informasi fitur pengelolaan pelanggan -->
-                                    <p class="mb-2">
-                                      Pastikan data pelanggan Navelle tersimpan dengan benar.
-                                      Kamu bisa menambahkan pelanggan baru melalui menu
-                                        <a href="{{ route('pelanggan.create') }}" class="tm-notification-link">
-                                       Tambah Pelanggan
-                                        </a>.
-                                        </p>
-                                    <span class="tm-small tm-text-color-secondary">Informasi sistem</span>
-
-                                </div>
-                            </div>
-                            <div class="media tm-notification-item">
-                                <div class="tm-gray-circle"><img src="{{ asset('assets-admin/img/notification-03.jpg') }}" alt="Avatar Image" class="rounded-circle"></div>
-                                <div class="media-body">
-                                    <p class="mb-2"><b>Victoria</b> and <b>6 others</b> sent you <a href="#"
-                                            class="tm-notification-link">order updates</a>. Read order information.</p>
-                                    <span class="tm-small tm-text-color-secondary">6h ago.</span>
-                                </div>
-                            </div>
-                            <div class="media tm-notification-item">
-                                <div class="tm-gray-circle"><img src="{{ asset('assets-admin/img/notification-01.jpg') }}" alt="Avatar Image" class="rounded-circle"></div>
-                                <div class="media-body">
-                                    <p class="mb-2"><b>Laura Cute</b> and <b>6 others</b> sent you <a href="#"
-                                            class="tm-notification-link">product records</a>.</p>
-                                    <span class="tm-small tm-text-color-secondary">6h ago.</span>
-                                </div>
-                            </div>
-                            <div class="media tm-notification-item">
-                                <div class="tm-gray-circle"><img src="{{ asset('assets-admin/img/notification-02.jpg') }}" alt="Avatar Image" class="rounded-circle"></div>
-                                <div class="media-body">
-                                    <p class="mb-2"><b>Samantha</b> and <b>6 others</b> sent you <a href="#"
-                                            class="tm-notification-link">order stuffs</a>.</p>
-                                    <span class="tm-small tm-text-color-secondary">6h ago.</span>
-                                </div>
-                            </div>
-                            <div class="media tm-notification-item">
-                                <div class="tm-gray-circle"><img src="{{ asset('assets-admin/img/notification-03.jpg') }}" alt="Avatar Image" class="rounded-circle"></div>
-                                <div class="media-body">
-                                    <p class="mb-2"><b>Sophie</b> and <b>6 others</b> sent you <a href="#"
-                                            class="tm-notification-link">product updates</a>.</p>
-                                    <span class="tm-small tm-text-color-secondary">6h ago.</span>
-                                </div>
-                            </div>
-                            <div class="media tm-notification-item">
-                                <div class="tm-gray-circle"><img src="{{ asset('assets-admin/img/notification-01.jpg') }}" alt="Avatar Image" class="rounded-circle"></div>
-                                <div class="media-body">
-                                    <p class="mb-2"><b>Lily A</b> and <b>6 others</b> sent you <a href="#"
-                                            class="tm-notification-link">product updates</a>.</p>
-                                    <span class="tm-small tm-text-color-secondary">6h ago.</span>
-                                </div>
-                            </div>
-                            <div class="media tm-notification-item">
-                                <div class="tm-gray-circle"><img src="{{ asset('assets-admin/img/notification-02.jpg') }}" alt="Avatar Image" class="rounded-circle"></div>
-                                <div class="media-body">
-                                    <p class="mb-2"><b>Amara</b> and <b>6 others</b> sent you <a href="#"
-                                            class="tm-notification-link">product updates</a>.</p>
-                                    <span class="tm-small tm-text-color-secondary">6h ago.</span>
-                                </div>
-                            </div>
-                            <div class="media tm-notification-item">
-                                <div class="tm-gray-circle"><img src="{{ asset('assets-admin/img/notification-03.jpg') }}" alt="Avatar Image" class="rounded-circle"></div>
-                                <div class="media-body">
-                                    <p class="mb-2"><b>Cinthela</b> and <b>6 others</b> sent you <a href="#"
-                                            class="tm-notification-link">product updates</a>.</p>
-                                    <span class="tm-small tm-text-color-secondary">6h ago.</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                <div>
+                    <strong>Pengelolaan Produk</strong>
+                    <p>Periksa informasi produk yang tersedia di toko.</p>
+                    <a href="{{ route('produk.index') }}"
+                       style="color:#bd6684;">
+                        Lihat Data Produk
+                    </a>
                 </div>
-                <div class="col-12 tm-block-col">
-                    <div class="tm-bg-primary-dark tm-block tm-block-taller tm-block-scroll">
-                        <h2 class="tm-block-title">Orders List</h2>
-                        <table class="table">
-                            <thead>
-                                <tr>
-                                    <th scope="col">ORDER NO.</th>
-                                    <th scope="col">STATUS</th>
-                                    <th scope="col">OPERATORS</th>
-                                    <th scope="col">LOCATION</th>
-                                    <th scope="col">DISTANCE</th>
-                                    <th scope="col">START DATE</th>
-                                    <th scope="col">EST DELIVERY DUE</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <th scope="row"><b>#122349</b></th>
-                                    <td>
-                                        <div class="tm-status-circle moving">
-                                        </div>Moving
-                                    </td>
-                                    <td><b>Oliver Trag</b></td>
-                                    <td><b>London, UK</b></td>
-                                    <td><b>485 km</b></td>
-                                    <td>16:00, 12 NOV 2018</td>
-                                    <td>08:00, 18 NOV 2018</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row"><b>#122348</b></th>
-                                    <td>
-                                        <div class="tm-status-circle pending">
-                                        </div>Pending
-                                    </td>
-                                    <td><b>Jacob Miller</b></td>
-                                    <td><b>London, UK</b></td>
-                                    <td><b>360 km</b></td>
-                                    <td>11:00, 10 NOV 2018</td>
-                                    <td>04:00, 14 NOV 2018</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row"><b>#122347</b></th>
-                                    <td>
-                                        <div class="tm-status-circle cancelled">
-                                        </div>Cancelled
-                                    </td>
-                                    <td><b>George Wilson</b></td>
-                                    <td><b>London, UK</b></td>
-                                    <td><b>340 km</b></td>
-                                    <td>12:00, 22 NOV 2018</td>
-                                    <td>06:00, 28 NOV 2018</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row"><b>#122346</b></th>
-                                    <td>
-                                        <div class="tm-status-circle moving">
-                                        </div>Moving
-                                    </td>
-                                    <td><b>William Aung</b></td>
-                                    <td><b>London, UK</b></td>
-                                    <td><b>218 km</b></td>
-                                    <td>15:00, 10 NOV 2018</td>
-                                    <td>09:00, 14 NOV 2018</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row"><b>#122345</b></th>
-                                    <td>
-                                        <div class="tm-status-circle pending">
-                                        </div>Pending
-                                    </td>
-                                    <td><b>Harry Ryan</b></td>
-                                    <td><b>London, UK</b></td>
-                                    <td><b>280 km</b></td>
-                                    <td>15:00, 11 NOV 2018</td>
-                                    <td>09:00, 17 NOV 2018</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row"><b>#122344</b></th>
-                                    <td>
-                                        <div class="tm-status-circle pending">
-                                        </div>Pending
-                                    </td>
-                                    <td><b>Michael Jones</b></td>
-                                    <td><b>London, UK</b></td>
-                                    <td><b>218 km</b></td>
-                                    <td>18:00, 12 OCT 2018</td>
-                                    <td>06:00, 18 OCT 2018</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row"><b>#122343</b></th>
-                                    <td>
-                                        <div class="tm-status-circle moving">
-                                        </div>Moving
-                                    </td>
-                                    <td><b>Timmy Davis</b></td>
-                                    <td><b>London, UK</b></td>
-                                    <td><b>218 km</b></td>
-                                    <td>12:00, 10 OCT 2018</td>
-                                    <td>08:00, 18 OCT 2018</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row"><b>#122342</b></th>
-                                    <td>
-                                        <div class="tm-status-circle moving">
-                                        </div>Moving
-                                    </td>
-                                    <td><b>Oscar Phyo</b></td>
-                                    <td><b>London, UK</b></td>
-                                    <td><b>420 km</b></td>
-                                    <td>15:30, 06 OCT 2018</td>
-                                    <td>09:30, 16 OCT 2018</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row"><b>#122341</b></th>
-                                    <td>
-                                        <div class="tm-status-circle moving">
-                                        </div>Moving
-                                    </td>
-                                    <td><b>Charlie Brown</b></td>
-                                    <td><b>London, UK</b></td>
-                                    <td><b>300 km</b></td>
-                                    <td>11:00, 10 OCT 2018</td>
-                                    <td>03:00, 14 OCT 2018</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row"><b>#122340</b></th>
-                                    <td>
-                                        <div class="tm-status-circle cancelled">
-                                        </div>Cancelled
-                                    </td>
-                                    <td><b>Wilson Cookies</b></td>
-                                    <td><b>London, UK</b></td>
-                                    <td><b>218 km</b></td>
-                                    <td>17:30, 12 OCT 2018</td>
-                                    <td>08:30, 22 OCT 2018</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row"><b>#122339</b></th>
-                                    <td>
-                                        <div class="tm-status-circle moving">
-                                        </div>Moving
-                                    </td>
-                                    <td><b>Richard Clamon</b></td>
-                                    <td><b>London, UK</b></td>
-                                    <td><b>150 km</b></td>
-                                    <td>15:00, 12 OCT 2018</td>
-                                    <td>09:20, 26 OCT 2018</td>
-                                </tr>
-                            </tbody>
-                        </table>
+            </div>
+        </div>
+
+        <div class="col-12 mb-4">
+            <div class="customer-card p-4">
+                <h5 style="color:#bd6684;">Menu Pengelolaan Toko</h5>
+
+                <div class="row mt-3">
+                    <div class="col-12 col-md-4 mb-3">
+                        <h6>Data Pelanggan</h6>
+                        <p>Kelola informasi pelanggan Navelle.</p>
+                        <a href="{{ route('pelanggan.index') }}"
+                           class="btn-navelle">
+                            Kelola Pelanggan
+                        </a>
+                    </div>
+
+                    <div class="col-12 col-md-4 mb-3">
+                        <h6>Data Pengguna</h6>
+                        <p>Kelola akun pengguna sistem.</p>
+                        <a href="{{ route('users.index') }}"
+                           class="btn-navelle">
+                            Kelola Pengguna
+                        </a>
+                    </div>
+
+                    <div class="col-12 col-md-4 mb-3">
+                        <h6>Data Produk</h6>
+                        <p>Kelola informasi produk Navelle.</p>
+                        <a href="{{ route('produk.index') }}"
+                           class="btn-navelle">
+                            Kelola Produk
+                        </a>
                     </div>
                 </div>
             </div>
         </div>
-        <footer class="tm-footer row tm-mt-small">
-            <div class="col-12 font-weight-light">
-                <p class="text-center text-white mb-0 px-4 small">
-                    Copyright &copy; <b>2018</b> All rights reserved.
 
-                    Design: <a rel="nofollow noopener" href="https://templatemo.com" class="tm-footer-link">Template Mo</a>
+        <div class="col-12 mb-4">
+            <div class="customer-card p-4">
+                <h5 style="color:#bd6684;">Daftar Pesanan</h5>
+                <p style="color:#94858c;">
+                    Bagian ini masih berupa contoh tampilan, bukan data pesanan dari database.
                 </p>
+
+                <div class="table-responsive">
+                    <table class="table customer-table">
+                        <thead>
+                            <tr>
+                                <th>No.</th>
+                                <th>Nomor Pesanan</th>
+                                <th>Status</th>
+                                <th>Nama</th>
+                                <th>Keterangan</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>1</td>
+                                <td>#NV001</td>
+                                <td>Diproses</td>
+                                <td>Contoh Pelanggan</td>
+                                <td>Data contoh</td>
+                            </tr>
+                            <tr>
+                                <td>2</td>
+                                <td>#NV002</td>
+                                <td>Menunggu</td>
+                                <td>Contoh Pelanggan</td>
+                                <td>Data contoh</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
-        </footer>
+        </div>
     </div>
 
-<script src="{{ asset('assets-admin/js/jquery-3.3.1.min.js') }}"></script>
-    <!-- https://jquery.com/download/ -->
-<script src="{{ asset('assets-admin/js/moment.min.js') }}"></script>
-    <!-- https://momentjs.com/ -->
+@endsection
+
+@push('scripts')
+    <script src="{{ asset('assets-admin/js/jquery-3.3.1.min.js') }}"></script>
+    <script src="{{ asset('assets-admin/js/moment.min.js') }}"></script>
     <script src="{{ asset('assets-admin/js/Chart.min.js') }}"></script>
-    <!-- http://www.chartjs.org/docs/latest/ -->
-    <script src="{{ asset('assets-admin/js/bootstrap.min.js') }}"></script>
-    <!-- https://getbootstrap.com/ -->
     <script src="{{ asset('assets-admin/js/tooplate-scripts.js') }}"></script>
+
     <script>
-        Chart.defaults.global.defaultFontColor = 'white';
-        let ctxLine,
-            ctxBar,
-            ctxPie,
-            optionsLine,
-            optionsBar,
-            optionsPie,
-            configLine,
-            configBar,
-            configPie,
-            lineChart;
-        barChart, pieChart;
-        // DOM is ready
         $(function () {
-            drawLineChart(); // Line Chart
-            drawBarChart(); // Bar Chart
-            drawPieChart(); // Pie Chart
+            if (typeof drawLineChart === 'function') {
+                drawLineChart();
+            }
 
-            $(window).resize(function () {
-                updateLineChart();
-                updateBarChart();
+            if (typeof drawBarChart === 'function') {
+                drawBarChart();
+            }
+
+            if (typeof drawPieChart === 'function') {
+                drawPieChart();
+            }
+
+            $(window).on('resize', function () {
+                if (typeof updateLineChart === 'function') {
+                    updateLineChart();
+                }
+
+                if (typeof updateBarChart === 'function') {
+                    updateBarChart();
+                }
             });
-        })
+        });
     </script>
-</body>
-
-</html>
+@endpush

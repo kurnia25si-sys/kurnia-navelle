@@ -1,28 +1,45 @@
-
-<nav class="navbar navbar-expand-lg navbar-light navelle-navbar">
-    <a class="navbar-brand navelle-brand" href="{{ url('/admin') }}">
+<aside class="navelle-sidebar">
+    <a href="{{ route('admin.dashboard') }}" class="sidebar-brand">
         <img src="{{ asset('assets-admin/img/logo navelle.png') }}"
-             alt="Logo Navelle"
-             width="45"
-             height="45"
-             style="object-fit: contain; margin-right: 10px;">
+             alt="Logo Navelle">
         <span>NAVELLE ADMIN</span>
     </a>
 
-    <div class="ml-auto d-flex align-items-center">
-        <a href="{{ url('/admin') }}"
-           class="navelle-link {{ ($activeMenu ?? '') === 'dashboard' ? 'active' : '' }}">
-            Dashboard
+    <div class="sidebar-label">MENU UTAMA</div>
+
+    <nav class="sidebar-menu">
+        <a href="{{ route('admin.dashboard') }}"
+           class="{{ request()->routeIs('admin.dashboard') ? 'active' : '' }}">
+            <i class="fas fa-tachometer-alt"></i>
+            <span>Dashboard</span>
         </a>
 
         <a href="{{ route('pelanggan.index') }}"
-           class="navelle-link {{ ($activeMenu ?? '') === 'pelanggan' ? 'active' : '' }}">
-            Data Pelanggan
+           class="{{ request()->routeIs('pelanggan.*') ? 'active' : '' }}">
+            <i class="fas fa-users"></i>
+            <span>Data Pelanggan</span>
         </a>
 
         <a href="{{ route('users.index') }}"
-           class="navelle-link {{ ($activeMenu ?? '') === 'users' ? 'active' : '' }}">
-            Data User
+           class="{{ request()->routeIs('users.*') ? 'active' : '' }}">
+            <i class="fas fa-user"></i>
+            <span>Data Pengguna</span>
         </a>
+
+        <a href="{{ route('produk.index') }}"
+           class="{{ request()->routeIs('produk.*') ? 'active' : '' }}">
+            <i class="fas fa-box"></i>
+            <span>Data Produk</span>
+        </a>
+    </nav>
+
+    <div class="sidebar-logout">
+        <form action="{{ route('logout') }}" method="POST">
+            @csrf
+            <button type="submit">
+                <i class="fas fa-sign-out-alt"></i>
+                &nbsp; Logout
+            </button>
+        </form>
     </div>
-</nav>
+</aside>
