@@ -36,14 +36,18 @@
                     <tr>
                         <td>{{ $loop->iteration }}</td>
                         <td>{{ $item->nama_produk }}</td>
-                        <td>{{ $item->kategori ?? '-' }}</td>
-                        <td>Rp {{ number_format($item->harga, 0, ',', '.') }}</td>
+                        <td>{{ $item->kategori_nama ?? $item->kategori ?? '-' }}</td>                        <td>Rp {{ number_format($item->harga, 0, ',', '.') }}</td>
                         <td>{{ $item->stok }}</td>
                         <td class="text-nowrap">
-                            <a href="{{ route('produk.edit', $item->id) }}"
-                               class="btn-edit">
-                                Edit
-                            </a>
+                            <a href="{{ route('produk.show', $item->id) }}"
+                             class="btn-edit">
+                            Detail
+                    </a>
+
+                         <a href="{{ route('produk.edit', $item->id) }}"
+                             class="btn-edit">
+                             Edit
+                    </a>
 
                             <form action="{{ route('produk.destroy', $item->id) }}"
                                   method="POST"

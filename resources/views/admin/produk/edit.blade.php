@@ -27,38 +27,78 @@
         @method('PUT')
 
         <div class="mb-3">
-            <label class="form-label">Nama Produk</label>
-            <input type="text" name="nama_produk" class="form-control"
-                   value="{{ old('nama_produk', $produk->nama_produk) }}" required>
+            <label for="nama_produk" class="form-label">Nama Produk</label>
+            <input
+                type="text"
+                name="nama_produk"
+                id="nama_produk"
+                class="form-control"
+                value="{{ old('nama_produk', $produk->nama_produk) }}"
+                required
+            >
         </div>
 
         <div class="mb-3">
-            <label class="form-label">Kategori</label>
-            <input type="text" name="kategori" class="form-control"
-                   value="{{ old('kategori', $produk->kategori) }}">
+            <label for="kategori_id" class="form-label">Kategori</label>
+            <select name="kategori_id" id="kategori_id" class="form-control">
+                <option value="">-- Pilih Kategori --</option>
+
+                @foreach ($kategori as $item)
+                    <option
+                        value="{{ $item->id }}"
+                        {{ old('kategori_id', $produk->kategori_id) == $item->id ? 'selected' : '' }}
+                    >
+                        {{ $item->nama_kategori }}
+                    </option>
+                @endforeach
+            </select>
         </div>
 
         <div class="mb-3">
-            <label class="form-label">Deskripsi</label>
-            <textarea name="deskripsi" class="form-control" rows="3">{{ old('deskripsi', $produk->deskripsi) }}</textarea>
+            <label for="deskripsi" class="form-label">Deskripsi</label>
+            <textarea
+                name="deskripsi"
+                id="deskripsi"
+                class="form-control"
+                rows="3"
+            >{{ old('deskripsi', $produk->deskripsi) }}</textarea>
         </div>
 
         <div class="mb-3">
-            <label class="form-label">Harga (Rp)</label>
-            <input type="number" name="harga" class="form-control"
-                   value="{{ old('harga', $produk->harga) }}" min="0" required>
+            <label for="harga" class="form-label">Harga (Rp)</label>
+            <input
+                type="number"
+                name="harga"
+                id="harga"
+                class="form-control"
+                value="{{ old('harga', $produk->harga) }}"
+                min="0"
+                required
+            >
         </div>
 
         <div class="mb-3">
-            <label class="form-label">Stok</label>
-            <input type="number" name="stok" class="form-control"
-                   value="{{ old('stok', $produk->stok) }}" min="0" required>
+            <label for="stok" class="form-label">Stok</label>
+            <input
+                type="number"
+                name="stok"
+                id="stok"
+                class="form-control"
+                value="{{ old('stok', $produk->stok) }}"
+                min="0"
+                required
+            >
         </div>
 
         <div class="mb-4">
-            <label class="form-label">Nama File Gambar</label>
-            <input type="text" name="gambar" class="form-control"
-                   value="{{ old('gambar', $produk->gambar) }}">
+            <label for="gambar" class="form-label">Nama File Gambar</label>
+            <input
+                type="text"
+                name="gambar"
+                id="gambar"
+                class="form-control"
+                value="{{ old('gambar', $produk->gambar) }}"
+            >
         </div>
 
         <button type="submit" class="btn-navelle">

@@ -7,3 +7,53 @@
     --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
         'Segoe UI Symbol', 'Noto Color Emoji';
 }
+
+
+/* Navbar halaman pengunjung Navelle */
+.navelle-navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 15px;
+    padding: 18px 6%;
+    background-color: #fff0f5;
+    border-bottom: 1px solid #f5d5e1;
+}
+
+.navelle-brand {
+    color: #c46786;
+    font-size: 27px;
+    font-weight: bold;
+    text-decoration: none;
+    letter-spacing: 1px;
+}
+
+.navelle-nav-links {
+    display: flex;
+    align-items: center;
+    gap: 25px;
+}
+
+.navelle-nav-links a {
+    color: #51454a;
+    font-size: 15px;
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.navelle-nav-links a:hover {
+    color: #c46786;
+}
+
+@media (max-width: 480px) {
+    .navelle-navbar {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .navelle-nav-links {
+        flex-wrap: wrap;
+        gap: 16px;
+    }
+}

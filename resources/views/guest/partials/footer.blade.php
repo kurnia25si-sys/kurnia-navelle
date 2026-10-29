@@ -1,3 +1,4 @@
-<footer style="background:#f4b6d2; padding:15px; text-align:center;">
-    <p>Copyright &copy; {{ date('Y') }} Navelle</p>
+<footer class="guest-footer">
+    <p>&copy; {{ date('Y') }} Navelle. All rights reserved.</p>
+    <span>Fashion for your everyday style.</span>
 </footer>

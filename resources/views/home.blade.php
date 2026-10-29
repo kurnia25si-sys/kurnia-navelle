@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="id">
 <head>
@@ -228,71 +227,61 @@
         </div>
     </section>
 
+
     <!-- Products -->
     <section class="product spad">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
-                    <ul class="filter__controls">
-                        <li class="active" data-filter="*">Best Sellers</li>
-                        <li data-filter=".new-arrivals">New Arrivals</li>
-                        <li data-filter=".hot-sales">Hot Sales</li>
-                    </ul>
+                    <div class="section-title">
+                        <span>Our Collection</span>
+                        <h2>Produk Navelle</h2>
+                    </div>
                 </div>
             </div>
 
             <div class="row product__filter">
-
-                @php
-                    $products = [
-                        ['name' => 'Piqué Biker Jacket', 'image' => 'product-1.jpg', 'price' => 'Rp 670.000', 'class' => 'new-arrivals'],
-                        ['name' => 'Classic Fashion Jacket', 'image' => 'product-2.jpg', 'price' => 'Rp 520.000', 'class' => 'hot-sales'],
-                        ['name' => 'Multi-pocket Chest Bag', 'image' => 'product-3.jpg', 'price' => 'Rp 430.000', 'class' => 'new-arrivals'],
-                        ['name' => 'Diagonal Textured Cap', 'image' => 'product-4.jpg', 'price' => 'Rp 250.000', 'class' => 'hot-sales'],
-                        ['name' => 'Leather Backpack', 'image' => 'product-5.jpg', 'price' => 'Rp 310.000', 'class' => 'new-arrivals'],
-                        ['name' => 'Ankle Boots', 'image' => 'product-6.jpg', 'price' => 'Rp 980.000', 'class' => 'hot-sales'],
-                        ['name' => 'Contrast Pocket T-shirt', 'image' => 'product-7.jpg', 'price' => 'Rp 290.000', 'class' => 'new-arrivals'],
-                        ['name' => 'Flowing Scarf', 'image' => 'product-8.jpg', 'price' => 'Rp 180.000', 'class' => 'hot-sales'],
-                    ];
-                @endphp
-
-                @foreach ($products as $product)
-                    <div class="col-lg-3 col-md-6 col-sm-6 mix {{ $product['class'] }}">
+                @forelse ($produk as $item)
+                    <div class="col-lg-3 col-md-6 col-sm-6 mix">
                         <div class="product__item">
                             <div class="product__item__pic set-bg"
-                                 data-setbg="{{ asset('assets-guest/img/product/' . $product['image']) }}">
+                                @if (!empty($item->gambar))
+                                    data-setbg="{{ asset('storage/' . $item->gambar) }}"
+                                @else
+                                    data-setbg="{{ asset('assets-guest/img/product/product-1.jpg') }}"
+                                @endif
+                            >
                                 <ul class="product__hover">
                                     <li>
                                         <a href="#">
-                                            <img src="{{ asset('assets-guest/img/icon/heart.png') }}" alt="Wishlist">
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#">
-                                            <img src="{{ asset('assets-guest/img/icon/search.png') }}" alt="View product">
+                                            <img src="{{ asset('assets-guest/img/icon/heart.png') }}"
+                                                alt="Wishlist">
                                         </a>
                                     </li>
                                 </ul>
                             </div>
+
                             <div class="product__item__text">
-                                <h6>{{ $product['name'] }}</h6>
-                                <a href="#" class="add-cart">+ Add To Cart</a>
-                                <div class="rating">
-                                    <i class="fa fa-star-o"></i>
-                                    <i class="fa fa-star-o"></i>
-                                    <i class="fa fa-star-o"></i>
-                                    <i class="fa fa-star-o"></i>
-                                    <i class="fa fa-star-o"></i>
-                                </div>
-                                <h5>{{ $product['price'] }}</h5>
+                                <span>{{ $item->kategori_nama ?? $item->kategori ?? 'Fashion' }}</span>
+                                <h6>{{ $item->nama_produk }}</h6>
+
+                                <h5>
+                                    Rp{{ number_format($item->harga, 0, ',', '.') }}
+                                </h5>
+
+                                <p>Stok: {{ $item->stok }}</p>
                             </div>
                         </div>
                     </div>
-                @endforeach
-
+                @empty
+                    <div class="col-lg-12 text-center">
+                        <p>Belum ada produk yang tersedia.</p>
+                    </div>
+                @endforelse
             </div>
         </div>
     </section>
+
 
     <!-- Categories -->
     <section class="categories spad">
