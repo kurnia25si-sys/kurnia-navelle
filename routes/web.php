@@ -58,14 +58,41 @@ Route::get('/contact', function () {
 
 // Authentication
 Route::get('/auth', [AuthController::class, 'showLogin'])->name('login');
-Route::post('/auth', [AuthController::class, 'login'])->name('login.process');
+
+Route::post('/auth', [AuthController::class, 'login'])
+    ->name('login.process');
+
 Route::post('/logout', [AuthController::class, 'logout'])
     ->middleware('auth')
     ->name('logout');
 
 
+// Registrasi Customer
+Route::get('/register', [AuthController::class, 'showRegister'])
+    ->name('register');
+
+Route::post('/register', [AuthController::class, 'register'])
+    ->name('register.process');
+
+
+// Forgot Password
+Route::get('/forgot-password', [AuthController::class, 'showForgotPassword'])
+    ->name('password.request');
+
+Route::post('/forgot-password', [AuthController::class, 'sendResetLink'])
+    ->name('password.email');
+
+
+// Reset Password
+Route::get('/reset-password/{token}', [AuthController::class, 'showResetPassword'])
+    ->name('password.reset');
+
+Route::post('/reset-password', [AuthController::class, 'resetPassword'])
+    ->name('password.update');
+
+
 // Admin
-Route::middleware(['auth'])->group(function () {
+Route::middleware(['auth', 'checkrole:admin'])->group(function () {
 
     Route::get('/admin', function () {
         return view('admin.dashboard');
@@ -105,6 +132,7 @@ Route::middleware(['auth'])->group(function () {
 
 });
 
+
 // Detail Produk
 Route::get('/detail-produk/{id}', function ($id) {
     $produk = DB::table('produk')
@@ -122,6 +150,7 @@ Route::get('/detail-produk/{id}', function ($id) {
 
     return view('guest.detail-produk', compact('produk'));
 })->name('produk.detail');
+
 
 // Route Keranjang
 Route::get('/keranjang', [KeranjangController::class, 'index'])

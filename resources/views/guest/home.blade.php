@@ -20,35 +20,6 @@
 </head>
 
 <body>
-
-    <!-- Offcanvas Menu -->
-    <div class="offcanvas-menu-overlay"></div>
-    <div class="offcanvas-menu-wrapper">
-        <div class="offcanvas__option">
-            <div class="offcanvas__links">
-                <a href="#">Sign in</a>
-                <a href="#">FAQs</a>
-            </div>
-        </div>
-        <div class="offcanvas__nav__option">
-            <a href="#" class="search-switch">
-                <img src="{{ asset('assets-guest/img/icon/search.png') }}" alt="Search">
-            </a>
-            <a href="#">
-                <img src="{{ asset('assets-guest/img/icon/heart.png') }}" alt="Wishlist">
-            </a>
-            <a href="#">
-                <img src="{{ asset('assets-guest/img/icon/cart.png') }}" alt="Cart">
-                <span>0</span>
-            </a>
-            <div class="price">Rp0</div>
-        </div>
-        <div id="mobile-menu-wrap"></div>
-        <div class="offcanvas__text">
-            <p>Free shipping, 30-day return or refund guarantee.</p>
-        </div>
-    </div>
-
     <!-- Header -->
     <header class="header">
         <div class="header__top">
@@ -59,12 +30,14 @@
                             <p>Free shipping, 30-day return or refund guarantee.</p>
                         </div>
                     </div>
+
                     <div class="col-lg-6 col-md-5">
                         <div class="header__top__right">
+
                             <div class="header__top__links">
-                                <a href="#">Sign in</a>
                                 <a href="#">FAQs</a>
                             </div>
+
                             <div class="header__top__hover">
                                 <span>IDR <i class="arrow_carrot-down"></i></span>
                                 <ul>
@@ -72,6 +45,25 @@
                                     <li>EUR</li>
                                 </ul>
                             </div>
+
+                            @auth
+    <span style="color:#ffffff; margin-left:20px;">
+        Halo, {{ auth()->user()->name }}
+        ({{ ucfirst(auth()->user()->role) }})
+    </span>
+
+    <form action="{{ route('logout') }}" method="POST"
+          style="display:inline-block; margin-left:20px;">
+        @csrf
+        <button type="submit"
+                style="background:none; border:0; padding:0; color:#ffffff; font:inherit; cursor:pointer;">
+            Logout
+        </button>
+    </form>
+@else
+    <a href="{{ route('login') }}">Sign in</a>
+@endauth
+
                         </div>
                     </div>
                 </div>
@@ -83,14 +75,15 @@
                 <div class="col-lg-3 col-md-3">
                     <div class="header__logo">
                         <a href="{{ url('/') }}">
-<img src="{{ asset('assets-guest/img/logo navelle.png') }}"
-     alt="Navelle"
-     style="width: 120px; height: auto;">                        </a>
+                            <img src="{{ asset('assets-guest/img/logo navelle.png') }}"
+                                 alt="Navelle"
+                                 style="width: 120px; height: auto;">
+                        </a>
                     </div>
                 </div>
 
                 <div class="col-lg-6 col-md-6">
-                    <nav class="header__menu mobile-menu">
+                    <nav class="header__menu">
                         <ul>
                             <li class="active"><a href="{{ url('/') }}">Home</a></li>
                             <li><a href="#">Shop</a></li>
@@ -125,7 +118,6 @@
                     </div>
                 </div>
             </div>
-            <div class="canvas__open"><i class="fa fa-bars"></i></div>
         </div>
     </header>
 

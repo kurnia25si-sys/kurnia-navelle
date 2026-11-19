@@ -5,6 +5,18 @@
         <span>NAVELLE ADMIN</span>
     </a>
 
+    {{-- Informasi Pengguna --}}
+    <div class="sidebar-label">INFORMASI AKUN</div>
+
+    <div style="padding: 10px 20px; margin-bottom: 15px;">
+        <div style="font-weight: bold;">
+            {{ auth()->user()->name }}
+        </div>
+        <div style="font-size: 13px; margin-top: 5px;">
+            Role: {{ ucfirst(auth()->user()->role) }}
+        </div>
+    </div>
+
     <div class="sidebar-label">MENU UTAMA</div>
 
     <nav class="sidebar-menu">

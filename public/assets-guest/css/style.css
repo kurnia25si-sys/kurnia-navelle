@@ -3652,7 +3652,7 @@ ol {
 		color: #111111;
 	}
 	.slicknav_nav {
-		display: block !important;
+		display: none;
 	}
 	.offcanvas__option {
 		text-align: center;
@@ -4276,4 +4276,31 @@ ol {
     background: #ccc;
     border-color: #ccc;
     cursor: not-allowed;
+}
+
+/* Navelle Hamburger di Header Atas */
+.navelle-hamburger {
+    display: none;
+}
+
+@media only screen and (max-width: 991px) {
+    .header__top__right {
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        gap: 15px;
+    }
+
+    .navelle-hamburger {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        color: #ffffff;
+        font-size: 22px;
+        cursor: pointer;
+        position: static;
+        width: 35px;
+        height: 35px;
+        border: none;
+    }
 }
