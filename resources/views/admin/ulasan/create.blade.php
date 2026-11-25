@@ -1,4 +1,3 @@
-
 @extends('layouts.admin.app')
 
 @section('content')
@@ -40,6 +39,18 @@
                 class="form-control"
                 value="{{ old('nama_pengulas') }}"
                 required
+            >
+        </div>
+
+        <div class="mb-3">
+            <label for="email_pengulas" class="form-label">Email Pengulas</label>
+            <input
+                type="email"
+                name="email_pengulas"
+                id="email_pengulas"
+                class="form-control"
+                value="{{ old('email_pengulas') }}"
+                placeholder="Masukkan email pelanggan"
             >
         </div>
 

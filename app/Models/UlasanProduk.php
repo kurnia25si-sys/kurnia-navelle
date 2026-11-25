@@ -12,9 +12,12 @@ class UlasanProduk extends Model
     protected $fillable = [
         'produk_id',
         'nama_pengulas',
+        'email_pengulas',
         'rating',
         'komentar',
     ];
+
+
 
     public function produk(): BelongsTo
     {

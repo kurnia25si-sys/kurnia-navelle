@@ -63,9 +63,14 @@
             </a>
         </div>
 
-        <button type="submit" class="btn-navelle">
+                <button type="submit" class="btn-navelle">
             Login
         </button>
+
+        <a href="{{ route('redirect.google') }}"
+           class="btn btn-outline-dark w-100 mt-3">
+            Login with Google
+        </a>
     </form>
 
     <p class="mt-3">

@@ -43,6 +43,18 @@
             <i class="fas fa-box"></i>
             <span>Data Produk</span>
         </a>
+
+         <a href="{{ route('ulasan-produk.index') }}"
+           class="{{ request()->routeIs('ulasan-produk.*') ? 'active' : '' }}">
+            <i class="fas fa-star"></i>
+            <span>Ulasan Produk</span>
+        </a>
+
+        <a href="{{ route('balasan-ulasan.index') }}"
+           class="{{ request()->routeIs('balasan-ulasan.*') ? 'active' : '' }}">
+            <i class="fas fa-reply"></i>
+            <span>Balasan Ulasan</span>
+        </a>
     </nav>
 
     <div class="sidebar-logout">

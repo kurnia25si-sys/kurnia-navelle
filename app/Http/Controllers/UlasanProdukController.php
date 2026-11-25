@@ -32,6 +32,7 @@ class UlasanProdukController extends Controller
         $validated = $request->validate([
             'produk_id' => 'required|exists:produk,id',
             'nama_pengulas' => 'required|string|max:255',
+            'email_pengulas' => 'nullable|email|max:255',
             'rating' => 'required|integer|min:1|max:5',
             'komentar' => 'required|string',
         ]);
@@ -42,6 +43,27 @@ class UlasanProdukController extends Controller
             ->route('ulasan-produk.index')
             ->with('success', 'Ulasan berhasil ditambahkan.');
     }
+
+
+    // Menyimpan ulasan dari pelanggan
+    public function storeCustomer(Request $request)
+    {
+
+        $validated = $request->validate([
+            'produk_id' => 'required|exists:produk,id',
+            'nama_pengulas' => 'required|string|max:255',
+            'email_pengulas' => 'required|email|max:255',
+            'rating' => 'required|integer|min:1|max:5',
+            'komentar' => 'required|string',
+        ]);
+
+        UlasanProduk::create($validated);
+
+        return redirect()
+            ->route('produk.detail', $validated['produk_id'])
+            ->with('success', 'Ulasan berhasil dikirim. Terima kasih!');
+    }
+
 
     // Mengarahkan detail ulasan ke halaman edit
     public function show(string $id)
@@ -59,22 +81,25 @@ class UlasanProdukController extends Controller
     }
 
     // Memperbarui ulasan
-    public function update(Request $request, string $id)
-    {
-        $validated = $request->validate([
-            'produk_id' => 'required|exists:produk,id',
-            'nama_pengulas' => 'required|string|max:255',
-            'rating' => 'required|integer|min:1|max:5',
-            'komentar' => 'required|string',
-        ]);
 
-        $ulasan = UlasanProduk::findOrFail($id);
-        $ulasan->update($validated);
+public function update(Request $request, string $id)
+{
+    $validated = $request->validate([
+        'produk_id' => 'required|exists:produk,id',
+        'nama_pengulas' => 'required|string|max:255',
+        'email_pengulas' => 'nullable|email|max:255',
+        'rating' => 'required|integer|min:1|max:5',
+        'komentar' => 'required|string',
+    ]);
 
-        return redirect()
-            ->route('ulasan-produk.index')
-            ->with('success', 'Ulasan berhasil diperbarui.');
-    }
+    $ulasan = UlasanProduk::findOrFail($id);
+    $ulasan->update($validated);
+
+    return redirect()
+        ->route('ulasan-produk.index')
+        ->with('success', 'Ulasan berhasil diperbarui.');
+}
+
 
     // Menghapus ulasan
     public function destroy(string $id)

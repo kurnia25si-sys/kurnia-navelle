@@ -1,10 +1,11 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Notifications\BalasanUlasanNotification;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Notification;
 
 class BalasanUlasanController extends Controller
 {
@@ -44,25 +45,46 @@ class BalasanUlasanController extends Controller
     }
 
     // Menyimpan balasan baru
-    public function store(Request $request)
-    {
-        $validated = $request->validate([
-            'ulasan_id' => 'required|exists:ulasan_produks,id',
-            'balasan' => 'required|string',
-        ]);
 
-        DB::table('balasan_ulasans')->insert([
-            'ulasan_id' => $validated['ulasan_id'],
-            'user_id' => Auth::id(),
-            'balasan' => $validated['balasan'],
-            'created_at' => now(),
-            'updated_at' => now(),
-        ]);
+public function store(Request $request)
+{
+    $validated = $request->validate([
+        'ulasan_id' => 'required|exists:ulasan_produks,id',
+        'balasan' => 'required|string',
+    ]);
 
-        return redirect()
-            ->route('balasan-ulasan.index')
-            ->with('success', 'Balasan berhasil ditambahkan.');
+    DB::table('balasan_ulasans')->insert([
+        'ulasan_id' => $validated['ulasan_id'],
+        'user_id' => Auth::id(),
+        'balasan' => $validated['balasan'],
+        'created_at' => now(),
+        'updated_at' => now(),
+    ]);
+
+    $ulasan = DB::table('ulasan_produks')
+        ->join('produk', 'ulasan_produks.produk_id', '=', 'produk.id')
+        ->where('ulasan_produks.id', $validated['ulasan_id'])
+        ->select(
+            'ulasan_produks.nama_pengulas',
+            'ulasan_produks.email_pengulas',
+            'produk.nama_produk'
+        )
+        ->first();
+
+    if ($ulasan && $ulasan->email_pengulas) {
+        Notification::route('mail', $ulasan->email_pengulas)
+            ->notify(new BalasanUlasanNotification(
+                $ulasan->nama_produk,
+                $validated['balasan'],
+                Auth::user()->name
+            ));
     }
+
+    return redirect()
+        ->route('balasan-ulasan.index')
+        ->with('success', 'Balasan berhasil ditambahkan dan email notifikasi telah diproses.');
+}
+
 
     // Mengarahkan detail ke halaman edit
     public function show(string $id)

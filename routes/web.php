@@ -55,6 +55,12 @@ Route::get('/contact', function () {
     return view('guest.contact');
 });
 
+// Google Login
+Route::get('/auth/redirect-google', [AuthController::class, 'redirectToGoogle'])
+    ->name('redirect.google');
+
+Route::get('/google/callback', [AuthController::class, 'handleGoogleCallback'])
+    ->name('google.callback');
 
 // Authentication
 Route::get('/auth', [AuthController::class, 'showLogin'])->name('login');
@@ -130,6 +136,13 @@ Route::middleware(['auth', 'checkrole:admin'])->group(function () {
         return view('admin.produk.query', compact('produk'));
     })->name('produk.query');
 
+});
+
+
+// Route Ulasan Pelanggan
+Route::middleware(['auth', 'checkrole:customer'])->group(function () {
+    Route::post('/ulasan-pelanggan', [UlasanProdukController::class, 'storeCustomer'])
+        ->name('ulasan-pelanggan.store');
 });
 
 

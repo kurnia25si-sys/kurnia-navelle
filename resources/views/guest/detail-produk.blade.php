@@ -123,6 +123,91 @@
     </div>
 </div>
 
+
+<div class="container mb-5">
+    <div class="detail-container">
+        <h3 style="color: #d66b91; margin-bottom: 20px;">
+            Tulis Ulasan Produk
+        </h3>
+
+        @if (session('success'))
+            <div class="alert alert-success">
+                {{ session('success') }}
+            </div>
+        @endif
+
+        @if ($errors->any())
+            <div class="alert alert-danger">
+                <ul class="mb-0">
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
+
+<form action="{{ route('ulasan-pelanggan.store') }}" method="POST">            @csrf
+
+            <input type="hidden" name="produk_id" value="{{ $produk->id }}">
+
+            <div class="mb-3">
+                <label for="nama_pengulas">Nama</label>
+                <input
+                    type="text"
+                    name="nama_pengulas"
+                    id="nama_pengulas"
+                    class="form-control"
+                    value="{{ old('nama_pengulas', auth()->user()->name ?? '') }}"
+                    required
+                >
+            </div>
+
+            <div class="mb-3">
+                <label for="email_pengulas">Email Aktif</label>
+                <input
+                    type="email"
+                    name="email_pengulas"
+                    id="email_pengulas"
+                    class="form-control"
+                    value="{{ old('email_pengulas', auth()->user()->email ?? '') }}"
+                    placeholder="Masukkan Gmail aktif"
+                    required
+                >
+            </div>
+
+            <div class="mb-3">
+                <label for="rating">Rating Produk</label>
+                <select name="rating" id="rating" class="form-control" required>
+                    <option value="">-- Pilih Rating --</option>
+                    @for ($i = 1; $i <= 5; $i++)
+                        <option value="{{ $i }}"
+                            {{ old('rating') == $i ? 'selected' : '' }}>
+                            {{ $i }} Bintang
+                        </option>
+                    @endfor
+                </select>
+            </div>
+
+            <div class="mb-3">
+                <label for="komentar">Komentar</label>
+                <textarea
+                    name="komentar"
+                    id="komentar"
+                    class="form-control"
+                    rows="4"
+                    placeholder="Tuliskan pengalaman kamu menggunakan produk ini..."
+                    required
+                >{{ old('komentar') }}</textarea>
+            </div>
+
+            <button type="submit" class="detail-button">
+                Kirim Ulasan
+            </button>
+        </form>
+    </div>
+</div>
+
+
 @include('guest.partials.footer')
 
 <script src="{{ asset('assets-guest/js/jquery-3.3.1.min.js') }}"></script>

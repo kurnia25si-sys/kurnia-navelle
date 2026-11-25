@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Password;
 use Illuminate\Support\Str;
+use Laravel\Socialite\Facades\Socialite;
 
 class AuthController extends Controller
 {
@@ -142,14 +143,56 @@ public function resetPassword(Request $request)
         ]);
 }
 
-    public function logout(Request $request)
-    {
-        Auth::logout();
+    // Login menggunakan Google
+public function redirectToGoogle()
+{
+    return Socialite::driver('google')->redirect();
+}
 
-        $request->session()->invalidate();
-        $request->session()->regenerateToken();
+public function handleGoogleCallback(Request $request)
+{
+    $googleUser = Socialite::driver('google')->user();
 
-        return redirect('/auth')
-            ->with('success', 'Kamu berhasil logout.');
+    $email = $googleUser->getEmail();
+
+    if (!$email) {
+        return redirect()->route('login')
+            ->withErrors(['email' => 'Email Google tidak ditemukan.']);
     }
+
+    $user = User::firstOrCreate(
+        ['email' => $email],
+        [
+            'name' => $googleUser->getName() ?? 'Customer Navelle',
+            'password' => Str::random(32),
+            'role' => 'customer',
+        ]
+    );
+
+    Auth::login($user);
+
+    $request->session()->regenerate();
+
+    $request->session()->put('last_login', now());
+
+    if ($user->role === 'admin') {
+        return redirect()->route('admin.dashboard')
+            ->with('success', 'Login Google berhasil! Selamat datang, Admin.');
+    }
+
+    return redirect('/')
+        ->with('success', 'Login Google berhasil! Selamat datang di Navelle.');
+}
+
+// Logout
+public function logout(Request $request)
+{
+    Auth::logout();
+
+    $request->session()->invalidate();
+    $request->session()->regenerateToken();
+
+    return redirect('/auth')
+        ->with('success', 'Kamu berhasil logout.');
+}
 }

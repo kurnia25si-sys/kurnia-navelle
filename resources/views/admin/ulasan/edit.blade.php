@@ -43,6 +43,18 @@
         </div>
 
         <div class="mb-3">
+            <label for="email_pengulas" class="form-label">Email Pengulas</label>
+            <input
+                type="email"
+                name="email_pengulas"
+                id="email_pengulas"
+                class="form-control"
+                value="{{ old('email_pengulas', $ulasan->email_pengulas) }}"
+                placeholder="Masukkan email pelanggan"
+            >
+        </div>
+
+        <div class="mb-3">
             <label for="rating" class="form-label">Rating</label>
             <select name="rating" id="rating" class="form-control" required>
                 @for ($i = 1; $i <= 5; $i++)
@@ -68,8 +80,8 @@
         <button type="submit" class="btn btn-primary">Perbarui</button>
 
         <a href="{{ route('ulasan-produk.index') }}" class="btn btn-secondary">
-    Kembali
-</a>
+            Kembali
+        </a>
     </form>
 </div>
 @endsection
